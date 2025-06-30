@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .card-container {
+            perspective: 1000px;
+        }
+        .card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-body {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <div class="row">
+            <div v-for="card in cards" :key="card.id" class="col-3 mb-4 card-container">
+                <div class="card" :class="{ flipped: selectedCard && (selectedCard.id === card.id || card.flipped ) }" @click="showCardContent(card)">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ card.title }}</h5>
+                    </div>
+                    <div class="card-back">
+                        <p>{{ card.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
