@@ -5,26 +5,7 @@ new Vue({
         cards: [],
         // 被選中的卡片
         selectedCard: null,
-        // 卡片內容陣列
-        content:[
-            'Card 99 Content',
-            'Card 2 Content',
-            'Card 3 Content',
-            'Card 4 Content',
-            'Card 5 Content',
-            'Card 6 Content',
-            'Card 7 Content',
-            'Card 8 Content',
-            'Card 9 Content',
-            'Card 10 Content',
-            'Card 11 Content',
-            'Card 12 Content',
-            'Card 13 Content',
-            'Card 14 Content',
-            'Card 15 Content',
-            'Card 16 Content',
-            'Card 16 Content'
-        ]
+        sourceUrl :'https://docs.google.com/spreadsheets/d/1HmuhskPljpFyniYWvF-UU6aDaD43Fiy3IOxBdI7tq4Y/edit?gid=0#gid=0'
     },
     created() {
         this.fetchContentFromGoogleSheet();
@@ -61,6 +42,9 @@ new Vue({
                 card.flipped = true;
                 this.selectedCard = card;
             } 
+        },
+        openUrl() {
+            window.open(this.sourceUrl, '_blank');
         }
     }
 });
